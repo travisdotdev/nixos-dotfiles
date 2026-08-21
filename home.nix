@@ -20,8 +20,7 @@ in
 	programs.git = {
 		enable = true;
 		userName = "travdotdev";
-		userEmail = "108806867+travisdotdev@users.noreply.github.com";
-		extraConfig.credential."https://github.com".helper = "$[pkgs.gh]/bin/gh/ auth git-credential";
+		userEmail = "108806867+travisdotdev@users.noreply.github.com"; extraConfig.credential."https://github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential";
 	};
 	programs.bash = {
         enable = true;
@@ -68,11 +67,10 @@ in
 		(python3.withPackages (ps: with ps; [ debugpy pynvim ]))
 		hyprshot
 		wl-clipboard
-		gh
 		kitty
 		waybar
 		foot
 		hyprpaper
-		killall
+		psmisc
 	];
 }

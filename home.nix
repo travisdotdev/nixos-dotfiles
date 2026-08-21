@@ -45,8 +45,8 @@ in
 		gtk.enable = true;
 		hyprcursor.enable = true;
 		package = pkgs.bibata-cursors;
-		name = "Bibata-Modern-Classic";
-		size = 24;
+		name = "Bibata-Original-Classic";
+		size = 17;
 	};
 
 	home.packages = with pkgs; [

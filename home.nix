@@ -21,6 +21,7 @@ in
 		enable = true;
 		userName = "travdotdev";
 		userEmail = "108806867+travisdotdev@users.noreply.github.com";
+		extraConfig.credential."https://github.com".helper = "$[pkgs.gh]/bin/gh/ auth git-credential";
 	};
 	programs.bash = {
         enable = true;

@@ -9,9 +9,7 @@ let
 		nvim = "nvim";
 		waybar = "waybar";
 		foot = "foot";
-	};
-in
-
+	}; in
 {
     home.username = "zena";
     home.homeDirectory = "/home/zena";
@@ -28,6 +26,7 @@ in
 		{
             btw = "echo I use nixos, btw";
 			rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#zena";
+			run = " setsid -f";
         };
 	profileExtra = ''
 		if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then

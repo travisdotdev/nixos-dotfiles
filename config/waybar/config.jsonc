@@ -1,0 +1,62 @@
+//-*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "height": 26,
+    "spacing": 0,
+    "margin-top": 4,
+    "margin-left": 8,
+    "margin-right": 8,
+
+    "modules-left": ["ext/workspaces", "ext/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "disk", "network", "battery", "tray"],
+
+    // Modules configuration
+    "ext/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name}",
+        "persistent-workspaces": {
+            "*" : 9
+        }
+    },
+    "ext/window" : {
+        "max-length": 40,
+        "seperate-outputs": false
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+        // "icons": {
+        //   "blueman": "bluetooth",
+        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+        // }
+    },
+	"clock": {
+	"format": "{:%H:%M}",
+	"format-alt": "{:%a %d %b  %H:%M}",
+	"tooltip-format": "<tt>{calendar}</tt>"
+    },
+    "cpu":    { "format": "󰻠 {usage}%", "tooltip": false },
+    "memory": { "format": "󰍛 {used}G" },
+    "disk":   { "format": "󰋊 {free}", "interval": 60, "path": "/" },
+    "network": {
+        "format-wifi": "󰤨 {essid}",
+        "format-ethernet": "󰈀 wired",
+        "format-disconnected": "󰤭 offline",
+        "tooltip-format": "{ifname}  {ipaddr}"
+    },
+    "battery": {
+        "states": { "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-icons": ["󰁺", "󰁽", "󰁿", "󰂁", "󰁹"],
+        "tooltip-format": "{time} remaining"
+    },
+    "custom/sep": {
+        "format" : "|",
+        "interval" : 0
+    }
+}

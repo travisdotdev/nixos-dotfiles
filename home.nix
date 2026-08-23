@@ -75,5 +75,7 @@ let
 		psmisc
 		fuzzel
 		pavucontrol
+		obsidian
+		p7zip
 	];
 }

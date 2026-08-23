@@ -30,6 +30,10 @@
     ];
   };
 
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [ "obsidian" ];
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   programs.firefox.enable = true;
   environment.systemPackages = with pkgs; [
     wget
@@ -42,6 +46,7 @@
     nerd-fonts.jetbrains-mono
 	noto-fonts
 	noto-fonts-color-emoji
+	nerd-fonts.iosevka
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

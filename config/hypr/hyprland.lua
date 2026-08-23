@@ -1,7 +1,7 @@
 
 local mainMod = "SUPER"
 local terminal = "foot"
-local menu = "hyprlauncher"
+local menu = "fuzzel"
 
 
 ---- AUTOSTART ----

@@ -41,7 +41,7 @@ window#waybar {
 }
 
 #workspaces {
-    padding: 3px 4px;
+    padding: 2px 3px;
 }
 
 #workspaces button {
@@ -92,7 +92,7 @@ window#waybar.empty #window {
 #network.disconnected { color: @red; }
 
 #tray {
-    padding: 3px 10px;
+    padding: 2px 10px;
 }
 
 #tray menu {

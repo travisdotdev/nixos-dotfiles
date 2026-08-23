@@ -9,6 +9,7 @@ let
 		nvim = "nvim";
 		waybar = "waybar";
 		foot = "foot";
+		fuzzel = "fuzzel";
 	}; in
 {
     home.username = "zena";
@@ -27,6 +28,7 @@ let
             btw = "echo I use nixos, btw";
 			rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#zena";
 			run = " setsid -f";
+			wayreload = " pkill -USR2 -f waybar";
         };
 	profileExtra = ''
 		if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
@@ -71,5 +73,7 @@ let
 		foot
 		hyprpaper
 		psmisc
+		fuzzel
+		pavucontrol
 	];
 }

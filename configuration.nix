@@ -61,13 +61,6 @@
 	alsa.enable = true;
 	alsa.support32Bit = true;
 	pulse.enable = true;
-	wireplumber.extraConfig."10-bluez" = {
-	  "monitor.bluez.properties" = {
-        "bluez5.roles" = [ "a2dp_sink" "hfp_hf" ];
-        "bluez5.enable-sbc-xq" = true;
-        "bluez5.hfphsp-backend" = "native";
-      };
-    };
   };
 
     hardware.bluetooth = {

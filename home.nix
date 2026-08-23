@@ -10,6 +10,7 @@ let
 		waybar = "waybar";
 		foot = "foot";
 		fuzzel = "fuzzel";
+		yazi = "yazi";
 	}; in
 {
     home.username = "zena";
@@ -77,5 +78,9 @@ let
 		pavucontrol
 		obsidian
 		p7zip
+		yazi
+		ffmpegthumbnailer
+		poppler-utils
+		jq
 	];
 }

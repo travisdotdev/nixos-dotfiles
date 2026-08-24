@@ -1,71 +1,75 @@
-//-*- mode: jsonc -*-
 {
     "layer": "top",
     "position": "top",
-    "height": 26,
+    "exclusive": true,
     "spacing": 0,
-    "margin-top": 4,
-    "margin-left": 8,
-    "margin-right": 8,
-
-    "modules-left": ["ext/workspaces", "ext/window"],
+    "modules-left": ["cpu", "custom/gpu", "memory", "temperature"],
     "modules-center": ["clock"],
-    "modules-right": ["cpu", "memory", "disk", "network", "battery", "tray"],
+    "modules-right": ["mpris", "pulseaudio", "battery", "custom/power"],
 
-    // Modules configuration
-    "ext/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": "{name}",
-        "persistent-workspaces": {
-            "*" : 9
-        }
+    "cpu": {
+        "format": "CPU {usage}%",
+        "format-alt": "CPU {avg_frequency}GHz",
+        "interval": 2
     },
-    "ext/window" : {
-        "max-length": 40,
-        "seperate-outputs": false
+
+    "memory": {
+        "format": "RAM {percentage}%",
+        "format-alt": "RAM {used}G",
+        "tooltip-format": "{used} / {total}GiB",
+        "interval": 2
     },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-        // "icons": {
-        //   "blueman": "bluetooth",
-        //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
-        // }
+
+    "custom/gpu": {
+        "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent 2>/dev/null || cat /sys/class/drm/card0/device/gpu_busy_percent 2>/dev/null || echo 0",
+        "interval": 2,
+        "format": "GPU {}%",
+        "tooltip-format": "amdgpu: {}%"
     },
-	"clock": {
-	"format": "{:%H:%M}",
-	"format-alt": "{:%a %d %b  %H:%M}",
-	"tooltip-format": "<tt>{calendar}</tt>"
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "tooltip-format": "CPU Temp: {temperatureC}°C",
+        "interval": 2
     },
-    "cpu":    { "format": "󰻠 {usage}%", "tooltip": false },
-    "memory": { "format": "󰍛 {used}G" },
-    "disk":   { "format": "󰋊 {free}", "interval": 60, "path": "/" },
-    "network": {
-        "format-wifi": "󰤨 {essid}",
-        "format-ethernet": "󰈀 wired",
-        "format-disconnected": "󰤭 offline",
-        "tooltip-format": "{ifname}  {ipaddr}"
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%a %d %b  %H:%M}",
+        "tooltip-format": "<tt>{calendar}</tt>"
     },
+
+    "mpris": {
+        "format": "{title} - {artist}",
+        "format-paused": "{title} - {artist}",
+        "max-length": 50,
+        "tooltip": false,
+        "interval": 2
+    },
+
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "󰂰 {volume}%",
-        "format-muted": "󰝟 muted",
-        "format-icons": { "default": ["󰕿", "󰖀", "󰕾"] },
-        "on-click": "pavucontrol",
+        "format": "{icon}  {volume}%",
+        "format-muted": "Muted",
+        "format-icons": { "default": ["", "", ""] },
+        "tooltip": false,
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "scroll-step": 5
     },
+
     "battery": {
+        "bat": "BAT1",
         "states": { "warning": 30, "critical": 15 },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-icons": ["󰁺", "󰁽", "󰁿", "󰂁", "󰁹"],
+        "format": "BAT {capacity}%",
+        "format-alt": "BAT {time}",
+        "format-charging": "CHG {capacity}%",
         "tooltip-format": "{time} remaining"
     },
-    "custom/sep": {
-        "format" : "|",
-        "interval" : 0
+
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "systemctl poweroff"
     }
 }

@@ -31,11 +31,11 @@ let
 			run = " setsid -f";
 			wayreload = " pkill -USR2 -f waybar";
         };
-	profileExtra = ''
-		if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-			exec start-hyprland
-		fi
-	'';
+	# profileExtra = ''
+	# 	if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+	# 		exec start-hyprland
+	# 	fi
+	# '';
     };
 
 	xdg.configFile = builtins.mapAttrs (name: subpath: {
@@ -82,5 +82,7 @@ let
 		ffmpegthumbnailer
 		poppler-utils
 		jq
+		hyprlock
+		hypridle
 	];
 }

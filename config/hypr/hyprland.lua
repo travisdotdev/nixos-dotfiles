@@ -1,55 +1,65 @@
-
 local mainMod = "SUPER"
 local terminal = "foot"
 local menu = "fuzzel"
-
 
 ---- AUTOSTART ----
 hl.on("hyprland.start", function ()
     hl.exec_cmd("waybar")
     hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("hypridle")
 end)
 
 ---- ENVIRONMENT ----
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("QT_QPA_PLATFORM", "wayland")
+hl.env("MOZ_ENABLE_WAYLAND", "1")
 
----- LOOK AND FEEL ----
+---- LOOK AND FEEL (43PR) ----
 hl.config({
     general = {
-        gaps_in = 2,
+        gaps_in = 3,
         gaps_out = 3,
-        border_size = 1,
-        col = {
-            active_border = { colors = {"rgba(7dcfffee)", "rgba(ad8ee6ee)"}, angle = 45 },
-            inactive_border = "rgba(32344aaa)",
-        },
+        border_size = 0,
         resize_on_border = true,
+        allow_tearing = false,
         layout = "dwindle",
     },
     decoration = {
-        rounding = 5,
+        rounding = 8,
         active_opacity = 1.0,
-        inactive_opacity = 0.94,
+        inactive_opacity = 1.0,
         blur = {
             enabled = true,
-            size = 6,
-            passes = 2,
-            new_optimizations = true,
-            vibrancy = 0.17,
+            size = 5,
+            passes = 1,
+            vibrancy = 0.2,
+        },
+        shadow = {
+            enabled = true,
+            range = 12,
+            render_power = 3,
         },
     },
     animations = {
         enabled = true,
-	},
+    },
     dwindle = {
         preserve_split = true,
     },
     misc = {
         force_default_wallpaper = 0,
-		disable_hyprland_logo = true,
+        disable_hyprland_logo = true,
+        disable_splash_rendering = true,
     },
 })
+
+hl.curve("easeOut", { type = "bezier", points = { {0.05, 0.9}, {0.1, 1.0} } })
+hl.animation({ leaf = "windows",    enabled = true, speed = 5, bezier = "easeOut" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 5, bezier = "easeOut" })
+hl.animation({ leaf = "border",     enabled = true, speed = 5, bezier = "default" })
+hl.animation({ leaf = "fade",       enabled = true, speed = 4, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "default" })
 
 ---- INPUT ----
 hl.config({
@@ -59,11 +69,11 @@ hl.config({
         sensitivity = 0,
         touchpad = {
             natural_scroll = true,
+            tap_to_click = true,
         },
     },
 })
 
--- 3-finger swipe to switch workspaces
 hl.gesture({
     fingers = 3,
     direction = "horizontal",
@@ -71,40 +81,34 @@ hl.gesture({
 })
 
 ---- KEYBINDINGS ----
--- Apps
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("killall -SIGUSR1 waybar"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -USR1 -f waybar"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("loginctl lock-session"))
 
--- Window management
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) 
+hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 
--- Focus with arrows
-hl.bind(mainMod .. " + h ",  hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + l ", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + k",    hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + j",  hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + h", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + k", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + j", hl.dsp.focus({ direction = "down" }))
 
--- Workspaces: Super+1..0 switch, Super+Shift+1..0 move window
 for i = 1, 10 do
     local key = i % 10
     hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
--- Scratchpad
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 
--- Move/resize windows by dragging with Super + left/right mouse button
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
--- Function keys (needs brightnessctl + playerctl in home.packages)
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true, repeating = true })
@@ -116,19 +120,11 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 
 ---- WINDOW RULES ----
 hl.window_rule({
-    name = "float-pavucontrol",
-    match = { class = "org.pulseaudio.pavucontrol" },
-    float = true,
-})
-
--- ignore apps' maximize requests
-hl.window_rule({
     name = "suppress-maximize-events",
     match = { class = ".*" },
     suppress_event = "maximize",
 })
 
--- From the official example: fix XWayland drag glitches
 hl.window_rule({
     name = "fix-xwayland-drags",
     match = {
@@ -142,9 +138,10 @@ hl.window_rule({
     no_focus = true,
 })
 
+---- MONITOR ----
 hl.monitor({
-	output = "eDP-1",
-	mode = "1920x1080@60",
-	position = "0x0",
-	scale = 1.2, -- Default app gui size render
+    output = "eDP-1",
+    mode = "1920x1080@60",
+    position = "0x0",
+    scale = 1.2,
 })

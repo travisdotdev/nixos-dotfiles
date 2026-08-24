@@ -84,5 +84,7 @@ let
 		jq
 		hyprlock
 		hypridle
+	    bluetuith
+		pulseaudio
 	];
 }

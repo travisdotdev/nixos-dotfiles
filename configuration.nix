@@ -35,8 +35,6 @@
   environment.systemPackages = with pkgs; [
     wget
     git
-    bluetuith
-    pulseaudio
     (catppuccin-sddm.override {
       flavor = "mocha";
       font = "JetBrainsMono Nerd Font";

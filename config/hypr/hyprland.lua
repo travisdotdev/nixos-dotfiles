@@ -86,7 +86,7 @@ hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("pkill -USR1 -f waybar"))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("loginctl lock-session"))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("loginctl lock-session"))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))

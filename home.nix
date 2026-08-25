@@ -86,5 +86,6 @@ let
 		hypridle
 	    bluetuith
 		pulseaudio
+		brightnessctl
 	];
 }

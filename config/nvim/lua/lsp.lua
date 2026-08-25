@@ -3,6 +3,7 @@ local wanted = {
     ['pyright'] = 'pyright-langserver',
     ['lua-language-server'] = 'lua-language-server',
     ['clangd'] = 'clangd',
+	['nil'] = 'nil',
 }
 
 local missing = {}
@@ -49,9 +50,17 @@ vim.lsp.config('lua_ls', {
     },
 })
 
+vim.lsp.config('nil_ls', {
+	settings = {
+		[ 'nil' ] = {
+			formatting = { command = { 'nixfmt' } },
+		},
+	},
+})
+
 require('mason-lspconfig').setup {
     ensure_installed = {},
     automatic_enable = false,
 }
 
-vim.lsp.enable { 'pyright', 'lua_ls', 'clangd' }
+vim.lsp.enable { 'pyright', 'lua_ls', 'clangd', 'nil_ls' }

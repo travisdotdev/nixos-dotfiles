@@ -37,6 +37,11 @@ let
 	# 	fi
 	# '';
     };
+	programs.direnv = {
+		enable = true;
+		nix-direnv.enable = true;
+		enableBashIntegration = true;
+	};
 
 	xdg.configFile = builtins.mapAttrs (name: subpath: {
 		source = create_symlink "${dotfiles}/${subpath}";
@@ -87,5 +92,6 @@ let
 	    bluetuith
 		pulseaudio
 		brightnessctl
+		direnv
 	];
 }

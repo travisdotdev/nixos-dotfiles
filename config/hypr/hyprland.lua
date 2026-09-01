@@ -20,15 +20,18 @@ hl.config({
     general = {
         gaps_in = 3,
         gaps_out = 3,
-        border_size = 0,
+        border_size = 1,
         resize_on_border = true,
         allow_tearing = false,
         layout = "dwindle",
+		col = {
+			active_border = "rgba(44464f77)"
+		},
     },
     decoration = {
-        rounding = 8,
+        rounding = 5,
         active_opacity = 1.0,
-        inactive_opacity = 1.0,
+        inactive_opacity = 0.98,
         blur = {
             enabled = true,
             size = 5,
@@ -143,5 +146,5 @@ hl.monitor({
     output = "eDP-1",
     mode = "1920x1080@60",
     position = "0x0",
-    scale = 1.2,
+    scale = 1.0,
 })

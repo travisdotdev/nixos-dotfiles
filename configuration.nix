@@ -76,7 +76,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
     settings.General = {
       Experimental = true;   # battery % reporting for headsets/mice
       FastConnectable = true;

@@ -93,5 +93,6 @@ let
 		pulseaudio
 		brightnessctl
 		direnv
+		anki
 	];
 }

@@ -31,6 +31,7 @@ vim.pack.add {
 	'https://github.com/RRethy/base16-nvim',
 	'https://github.com/slugbyte/lackluster.nvim',
 	'https://github.com/kungfusheep/mfd.nvim',
+    "https://github.com/OXY2DEV/markview.nvim",
 	{
 		src = 'https://github.com/saghen/blink.cmp',
 		version = vim.version.range('1.0'),

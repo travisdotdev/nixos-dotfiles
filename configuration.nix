@@ -39,6 +39,8 @@
       flavor = "mocha";
       font = "JetBrainsMono Nerd Font";
     })
+	bluetui
+	usbutils
   ];
 
   fonts.packages = with pkgs; [
@@ -65,6 +67,11 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+	wireplumber.extraConfig."51-bluez-roles" = {
+	  "monitor.bluez.properties" = {
+	    "bluez5.roles" = [ "a2dp_source" "hsp_ag" "hfp_ag"];
+		};
+	};
   };
 
   services.displayManager.sddm = {
@@ -76,11 +83,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = false;
-    settings.General = {
-      Experimental = true;   # battery % reporting for headsets/mice
-      FastConnectable = true;
-    };
+    powerOnBoot = true;
   };
   hardware.enableRedistributableFirmware = true;
 

@@ -97,5 +97,6 @@ let
 		brightnessctl
 		direnv
 		anki
+		gh
 	];
 }

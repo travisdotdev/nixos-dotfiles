@@ -86,6 +86,7 @@
     powerOnBoot = true;
   };
   hardware.enableRedistributableFirmware = true;
+  documentation.dev.enable = true;
 
   system.stateVersion = "26.05";
 }

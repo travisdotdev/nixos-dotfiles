@@ -41,6 +41,8 @@
     })
 	bluetui
 	usbutils
+	man-pages
+	man-pages-posix
   ];
 
   fonts.packages = with pkgs; [

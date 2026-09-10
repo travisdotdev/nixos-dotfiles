@@ -63,7 +63,7 @@ let
 		neovim
 		ripgrep
 		nil
-		nixfmt-rfc-style
+		nixfmt
 		nodejs
 		gcc
 		fd

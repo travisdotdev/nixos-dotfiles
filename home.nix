@@ -19,10 +19,11 @@ let
 
 	programs.git = {
 		enable = true;
-		userName = "travdotdev";
-		userEmail = "108806867+travisdotdev@users.noreply.github.com"; extraConfig.credential."https://github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential";
-		extraConfig = {
-			init.defaultBRanch = "main";
+		settings = {
+			init.defaultBranch = "main";
+			user.name = "travdotdev";
+			user.email = "108806867+travisdotdev@users.noreply.github.com";
+			credential."https://github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential";
 		};
 	};
 	programs.bash = {

@@ -24,6 +24,7 @@ let
 			user.name = "travdotdev";
 			user.email = "108806867+travisdotdev@users.noreply.github.com";
 			credential."https://github.com".helper = "!${pkgs.gh}/bin/gh auth git-credential";
+			core.editor = "nvim";
 		};
 	};
 	programs.bash = {

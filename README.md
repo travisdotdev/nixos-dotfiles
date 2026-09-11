@@ -3,6 +3,10 @@
 Declarative NixOS configuration for a Hyprland desktop, managed with flakes and
 Home Manager. Built from scratch rather than forked.
 
+Trying to keep the setup minimal only adding stuff I need as they come up whilst maintaining a terminal focused workflow.
+
+![Desktop](assets/screenshot.png)
+
 ---
 
 ## What's in here

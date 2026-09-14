@@ -100,5 +100,6 @@ let
 		direnv
 		anki
 		gh
+		docker
 	];
 }

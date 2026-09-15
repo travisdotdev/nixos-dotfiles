@@ -50,6 +50,18 @@ vim.lsp.config('lua_ls', {
     },
 })
 
+vim.lsp.config('prolog_ls', {
+    cmd = {
+        'swipl',
+        '-g', 'use_module(library(lsp_server)).',
+        '-g', 'lsp_server:main',
+        '-t', 'halt',
+        '--', 'stdio',
+    },
+    filetypes = { 'prolog' },
+    root_markers = { 'pack.pl', '.git' },
+})
+
 vim.lsp.config('nil_ls', {
 	settings = {
 		[ 'nil' ] = {
@@ -63,4 +75,4 @@ require('mason-lspconfig').setup {
     automatic_enable = false,
 }
 
-vim.lsp.enable { 'pyright', 'lua_ls', 'clangd', 'nil_ls' }
+vim.lsp.enable { 'pyright', 'lua_ls', 'clangd', 'nil_ls', 'prolog_ls' }

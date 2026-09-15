@@ -101,5 +101,6 @@ let
 		anki
 		gh
 		docker
+		swi-prolog
 	];
 }

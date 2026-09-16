@@ -90,5 +90,15 @@
   hardware.enableRedistributableFirmware = true;
   documentation.dev.enable = true;
 
+  zramSwap = {
+		enable = true;
+		memoryPercent = 50;
+  };
+
+  services.earlyoom = {
+		enable = true;
+		freeMemThreshold = 5;
+  };
+
   system.stateVersion = "26.05";
 }

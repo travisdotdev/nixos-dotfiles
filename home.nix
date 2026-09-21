@@ -102,5 +102,6 @@ let
 		gh
 		docker
 		swi-prolog
+		btop
 	];
 }

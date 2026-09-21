@@ -62,6 +62,10 @@ vim.lsp.config('prolog_ls', {
     root_markers = { 'pack.pl', '.git' },
 })
 
+vim.lsp.config('hls', {
+	filetypes = { 'haskell', 'lhaskell' },
+})
+
 vim.lsp.config('nil_ls', {
 	settings = {
 		[ 'nil' ] = {

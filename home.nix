@@ -33,8 +33,11 @@ let
 		{
             btw = "echo I use nixos, btw";
 			rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles#zena";
-			run = " setsid -f";
-			wayreload = " pkill -USR2 -f waybar";
+			run = "setsid -f";
+			wayreload = "pkill -USR2 -f waybar";
+			vpn-up  = "sudo tailscale up --login-server https://vpn-student.scss.tcd.ie --accept-routes";
+			vpn-down = "sudo tailscale down";
+			vpn-status = "tailscale status";
         };
 	# profileExtra = ''
 	# 	if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then

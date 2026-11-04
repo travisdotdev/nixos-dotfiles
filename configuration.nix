@@ -27,7 +27,11 @@
   };
 
   nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "obsidian" ];
+	builtins.elem (lib.getName pkg) [
+	  "obsidian"
+      "steam"
+      "steam-unwrapped"
+  ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   programs.firefox.enable = true;
@@ -98,6 +102,28 @@
   services.earlyoom = {
 		enable = true;
 		freeMemThreshold = 5;
+  };
+
+  services.tailscale = {
+	  enable = true;
+	  useRoutingFeatures = "client";
+  };
+
+  programs.steam = {
+	enable = true;
+	remotePlay.openFirewall = true;
+	localNetworkGameTransfers.openFirewall = true;
+  };
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      gmp
+      zlib
+      libffi
+      ncurses
+      stdenv.cc.cc.lib
+    ];
   };
 
   system.stateVersion = "26.05";

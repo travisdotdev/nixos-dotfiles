@@ -110,5 +110,7 @@ let
 		docker
 		swi-prolog
 		btop
+		libreoffice
+		feh
 	];
 }

@@ -17,6 +17,10 @@ let
     home.homeDirectory = "/home/zena";
     home.stateVersion = "26.05";
 
+	home.file.".stack/config.yaml".text = "nix:\n  enable: false\nsystem-ghc: true\ninstall-ghc: false\nnotify-if-nix-on-path: false\n";
+	
+    home.sessionPath = [ "$HOME/bin" "$HOME/.local/bin" ];
+
 	programs.git = {
 		enable = true;
 		settings = {

@@ -1,68 +1,42 @@
 * {
-    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font Mono", monospace;
+    font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 11px;
+    font-weight: bold;
     min-height: 0;
 }
 
 window#waybar {
-    min-height: 10px;
-    background-color: rgba(20, 20, 20, 0);
-    color: #ffffff;
+    background-color: rgba(43, 52, 56, 0.7);
+    color: #e0e7e9;
 }
 
-.modules-left {
-    background-color: rgba(20, 20, 20, 0.5);
-    border-radius: 10px;
-    margin: 4px 0 2px 6px;
+#workspaces button {
+    padding: 0 6px;
+    color: #879ca1;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+#workspaces button.empty  { color: #667a82; }
+#workspaces button.active { color: #e0e7e9; }
+#workspaces button.urgent { color: #c76d76; }
+#workspaces button:hover  { background: rgba(82, 98, 103, 0.6); box-shadow: none; }
+
+#cpu, #memory, #custom-gpu, #temperature,
+#clock, #mpris, #pulseaudio, #battery, #custom-power {
+    padding: 0 8px;
+    color: #aabcc1;
 }
 
-.modules-center {
-    background-color: rgba(20, 20, 20, 0.5);
-    border-radius: 10px;
-    margin: 4px 0 2px;
-}
-
-.modules-right {
-    background-color: rgba(20, 20, 20, 0.5);
-    border-radius: 10px;
-    margin: 4px 6px 2px 0;
-}
-
-#cpu,
-#memory,
-#custom-gpu,
-#clock,
-#pulseaudio,
-#mpris,
-#custom-power,
-#temperature,
-#battery {
-    padding: 0 10px;
-    margin: 0 2px;
-}
-
-#custom-power {
-    color: #ffffff;
-    font-size: 15px;
-    margin-right: 10px;
-}
-
-#mpris { min-width: 0; }
-#clock { font-weight: bold; }
-#temperature.critical { color: #ff5555; }
-#battery.critical { color: #ff5555; }
+#clock { color: #e0e7e9; }
+#custom-power { font-size: 13px; margin-right: 6px; }
+#battery.warning { color: #b6a782; }
+#temperature.critical, #battery.critical { color: #c76d76; }
 
 tooltip {
-    background-color: rgba(20, 20, 20, 0.4);
-    color: #ffffff;
-    font-weight: bold;
-    border: 1px solid rgba(255, 255, 255, 0);
-    border-radius: 25px;
+    background-color: rgba(53, 65, 69, 0.95);
+    border: 1px solid #48575c;
+    border-radius: 8px;
 }
-
-tooltip label {
-    color: #ffffff;
-    font-size: 11px;
-    padding: 0;
-    margin: 0;
-}
+tooltip label { color: #e0e7e9; }

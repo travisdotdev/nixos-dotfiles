@@ -15,23 +15,22 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("QT_QPA_PLATFORM", "wayland")
 hl.env("MOZ_ENABLE_WAYLAND", "1")
 
----- LOOK AND FEEL (43PR) ----
+---- LOOK AND FEEL ----
 hl.config({
     general = {
-        gaps_in = 3,
-        gaps_out = 3,
+        gaps_in = 4,
+        gaps_out = { top = 5, right = 8, bottom = 8, left = 8 },
         border_size = 1,
         resize_on_border = true,
         allow_tearing = false,
         layout = "dwindle",
-		col = {
-			active_border = "rgba(44464f77)"
-		},
-    },
+        col = {
+            active_border   = "rgba(aabcc199)",
+            inactive_border = "rgba(48575c88)",
+        },
+	},
     decoration = {
-        rounding = 5,
-        active_opacity = 1.0,
-        inactive_opacity = 0.96,
+        rounding = 8,
         blur = {
             enabled = true,
             size = 5,
@@ -40,7 +39,7 @@ hl.config({
         },
         shadow = {
             enabled = true,
-            range = 12,
+            range = 4,
             render_power = 3,
         },
     },
@@ -62,7 +61,7 @@ hl.animation({ leaf = "windows",    enabled = true, speed = 5, bezier = "easeOut
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 5, bezier = "easeOut" })
 hl.animation({ leaf = "border",     enabled = true, speed = 5, bezier = "default" })
 hl.animation({ leaf = "fade",       enabled = true, speed = 4, bezier = "default" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 6, bezier = "default", style = "slidefade" })
 
 ---- INPUT ----
 hl.config({
@@ -120,6 +119,8 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("thunar"))
+
 
 ---- WINDOW RULES ----
 hl.window_rule({
@@ -139,6 +140,30 @@ hl.window_rule({
         pin = false,
     },
     no_focus = true,
+})
+
+-- translucent windows, solid when fullscreen
+hl.window_rule({
+    match = { class = ".*" },
+    opacity = "0.9 override",
+})
+
+hl.window_rule({
+    match = { class = ".*", fullscreen = true },
+    opacity = "1.0 override",
+})
+
+-- blur behind the bar and launcher
+hl.layer_rule({
+    match = { namespace = "waybar" },
+    blur = true,
+    ignore_alpha = 0.15,
+})
+
+hl.layer_rule({
+    match = { namespace = "launcher" },  -- fuzzel's default namespace
+    blur = true,
+    ignore_alpha = 0.15,
 })
 
 ---- MONITOR ----

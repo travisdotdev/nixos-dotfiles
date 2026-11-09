@@ -3,9 +3,14 @@
     "position": "top",
     "exclusive": true,
     "spacing": 0,
-    "modules-left": ["cpu", "custom/gpu", "memory", "temperature"],
+    "modules-left": ["hyprland/workspaces", "cpu", "custom/gpu", "memory", "temperature"],
     "modules-center": ["clock"],
     "modules-right": ["mpris", "pulseaudio", "battery", "custom/power"],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "persistent-workspaces": { "*": 5 }
+    },
 
     "cpu": {
         "format": "CPU {usage}%",

@@ -125,6 +125,13 @@
       stdenv.cc.cc.lib
     ];
   };
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs; [ thunar-volman ];
+  };
+  services.gvfs.enable = true;     # trash, USB drives
+  services.tumbler.enable = true;  # thumbnails
+  programs.dconf.enable = true;    # needed for the GTK theme below
 
   system.stateVersion = "26.05";
 }

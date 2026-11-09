@@ -68,6 +68,43 @@ let
 		size = 17;
 	};
 
+	gtk = {
+		enable = true;
+		theme = {
+			name = "Adwaita-dark";
+			package = pkgs.gnome-themes-extra;
+		};
+		iconTheme = {
+			name = "Papirus-Dark";
+			package = pkgs.papirus-icon-theme;
+		};
+		gtk3.extraCss = ''
+			@define-color gtk_bg #2b3438;
+			@define-color gtk_fg #e0e7e9;
+
+			window, .background, headerbar, .sidebar, .view, .titlebar,
+			notebook, menu, .menu, popover, .toolbar, textview, textview text,
+			treeview, treeview.view, treeview.view text,
+			toolbar, toolbar *, menubar, menubar *, notebook * {
+				background-color: @gtk_bg;
+				background-image: none;
+			}
+
+			* { color: @gtk_fg; }
+
+			.view:selected, .view selection, textview text selection,
+			treeview.view:selected, treeview.view:selected:focus {
+				background-color: #48575c;
+				color: #e0e7e9;
+			}
+		'';
+	};
+
+	xdg.mimeApps = {
+		enable = true;
+		defaultApplications."inode/directory" = [ "thunar.desktop" ];
+	};
+
 	home.packages = with pkgs; [
 		neovim
 		ripgrep

@@ -7,6 +7,8 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("waybar")
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("hypridle")
+	hl.exec_cmd("mako")
+    hl.exec_cmd("polkit-agent")
 end)
 
 ---- ENVIRONMENT ----
@@ -162,6 +164,12 @@ hl.layer_rule({
 
 hl.layer_rule({
     match = { namespace = "launcher" },  -- fuzzel's default namespace
+    blur = true,
+    ignore_alpha = 0.15,
+})
+
+hl.layer_rule({
+    match = { namespace = "notifications" },  -- the name mako gives its popups
     blur = true,
     ignore_alpha = 0.15,
 })

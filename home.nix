@@ -11,6 +11,7 @@ let
 		foot = "foot";
 		fuzzel = "fuzzel";
 		yazi = "yazi";
+		mako = "mako";
 	}; in
 {
     home.username = "zena";
@@ -149,5 +150,9 @@ let
 		btop
 		libreoffice
 		feh
+		mako
+		libnotify
+		playerctl
+		(writeShellScriptBin "polkit-agent" "exec ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent")
 	];
 }

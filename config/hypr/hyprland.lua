@@ -5,12 +5,12 @@ local menu = "fuzzel"
 ---- AUTOSTART ----
 hl.on("hyprland.start", function ()
     hl.exec_cmd("waybar")
-    hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("sleep 1 && waypaper --restore")
     hl.exec_cmd("hypridle")
-	hl.exec_cmd("mako")
+    hl.exec_cmd("mako")
     hl.exec_cmd("polkit-agent")
 end)
-
 ---- ENVIRONMENT ----
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
@@ -122,6 +122,7 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("thunar"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("waypaper"))
 
 
 ---- WINDOW RULES ----
@@ -153,6 +154,14 @@ hl.window_rule({
 hl.window_rule({
     match = { class = ".*", fullscreen = true },
     opacity = "1.0 override",
+})
+
+hl.window_rule({
+    name = "float-waypaper",
+    match = { class = ".*waypaper.*" },
+    float = true,
+    center = true,
+    size = "900 600",
 })
 
 -- blur behind the bar and launcher

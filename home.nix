@@ -12,6 +12,8 @@ let
 		fuzzel = "fuzzel";
 		yazi = "yazi";
 		mako = "mako";
+		btop = "btop";
+		fastfetch = "fastfetch";
 	}; in
 {
     home.username = "zena";
@@ -100,10 +102,34 @@ let
 			}
 		'';
 	};
-
 	xdg.mimeApps = {
 		enable = true;
-		defaultApplications."inode/directory" = [ "thunar.desktop" ];
+		defaultApplications = {
+			"inode/directory" = [ "thunar.desktop" ];
+
+			"image/png"  = [ "feh.desktop" ];
+			"image/jpeg" = [ "feh.desktop" ];
+			"image/gif"  = [ "feh.desktop" ];
+			"image/webp" = [ "feh.desktop" ];
+			"image/bmp"  = [ "feh.desktop" ];
+
+			"application/pdf" = [ "firefox.desktop" ];
+
+			"text/plain"    = [ "nvim-foot.desktop" ];
+			"text/markdown" = [ "nvim-foot.desktop" ];
+		};
+		associations.added = {
+			"image/webp"      = [ "feh.desktop" ];
+			"application/pdf" = [ "firefox.desktop" ];
+		};
+	};
+
+	xdg.desktopEntries.nvim-foot = {
+		name = "Neovim (foot)";
+		exec = "foot nvim %F";
+		terminal = false;
+		mimeType = [ "text/plain" "text/markdown" ];
+		noDisplay = true;
 	};
 
 	home.packages = with pkgs; [
@@ -127,7 +153,6 @@ let
 		kitty
 		waybar
 		foot
-		hyprpaper
 		psmisc
 		fuzzel
 		pavucontrol
@@ -154,5 +179,8 @@ let
 		libnotify
 		playerctl
 		(writeShellScriptBin "polkit-agent" "exec ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent")
+		fastfetch
+		awww
+		waypaper
 	];
 }
